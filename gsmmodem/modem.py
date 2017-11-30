@@ -1185,7 +1185,8 @@ class GsmModem(SerialComms):
 
         for line in lines:
             if line.startswith('#HTTPRING'):
-                self.httpCallback(line)
+                if self.httpCallback:
+                    self.httpCallback(line)
                 return
             elif 'RING' in line:
                 # Incoming call (or existing call is ringing)
